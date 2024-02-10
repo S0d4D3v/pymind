@@ -1,0 +1,94 @@
+#!/bin/python3
+
+import random
+import time
+import sys
+
+class colors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+    RED = '\033[31m'
+    GREEN = '\033[32m'
+    YELLOW = '\033[33m'
+    BLUE = '\033[34m'
+    PINK = '\033[35m'
+
+sys.stdout.write(colors.HEADER + "   ___________________________________\n   | Welcome to the" + colors.BOLD + " Mastermind game" + colors.ENDC + colors.HEADER + "  |\n   |_________________________________|" + colors.ENDC)
+time.sleep(.8)
+sys.stdout.write(colors.BLUE + "→ Time to break the " + colors.BOLD + "code " + colors.ENDC + colors.BLUE + "!\n")
+time.sleep(.8)
+check_man_page = str(input(colors.YELLOW + "Do you want to check the game's rules ? (y-N) : " + colors.ENDC))
+if check_man_page == "yes" or check_man_page == "y" or check_man_page == "Y" :
+    sys.stdout.write(colors.BOLD + "\nGame rules :\n" + colors.ENDC + "You will have to guess a suite of 4 colors,\nwith as the options R-r for Red, G-g for green, B-b for blue, P-p for pink and Y-y for yellow.\n")
+    time.sleep(2) 
+    sys.stdout.write("When you click enter with your 4 colors, you will either have " + colors.FAIL + "\nthe worng color at the wrong place"  + colors.ENDC + ", " + colors.WARNING + "\nthe correct color at the wrong place" + colors.ENDC + ", or " + colors.OKGREEN + "\nthe correct color at the correct place" + colors.ENDC + ".")
+    time.sleep(5)
+    sys.stdout.write(colors.UNDERLINE + "\nYou have 15 trials" + colors.ENDC)
+    time.sleep(2)
+elif check_man_page == "sus" :
+    sys.stdout.write("AMOGUS !")
+    time.sleep(1.2)
+else : 
+    sys.stdout.write("\n")
+
+trials = 0
+answer = [ str(random.randint(1, 5)),  str(random.randint(1, 5)), str(random.randint(1, 5)), str(random.randint(1, 5))]
+index = 0
+while index < len(answer) :
+    if answer[index] == "1" :
+        answer[index] = 'R'
+    elif answer[index] == "2" :
+        answer[index] = "G" 
+    elif answer[index] == "3" :
+        answer[index] = "B"
+    elif answer[index] == "4" :
+        answer[index] = "P"
+    elif answer[index] == "5" :
+        answer[index] = "Y"
+    index += 1
+
+index = 0
+while trials <= 15 :     
+    while True :
+        guess = str(input(colors.BLUE + "Take a guess :\n    "))
+        if len(guess) == 4 :
+            break
+        else :
+            continue
+    sys.stdout.write("")
+    ans = []
+    while index < len(answer) :
+        time.sleep(.7)
+        if guess[index] == answer[index] :
+            ans += [colors.OKGREEN, str(guess[index])]
+        elif guess[index] == answer[0] :
+            ans += [colors.WARNING, str(guess[index])]
+        elif guess[index] == answer[1] :
+            ans += [colors.WARNING, str(guess[index])]
+        elif guess[index] == answer[2] :
+            ans += [colors.WARNING, str(guess[index])]
+        elif guess[index] == answer[3] :
+            ans += [colors.WARNING, str(guess[index])]
+        else :
+            ans += [colors.FAIL, str(guess[index])]
+        index += 1
+    for letter in ans :      
+        sys.stdout.write(letter)
+        sys.stdout.flush()
+        time.sleep(0.2)
+    if guess[0] == answer[0] and guess[1] == answer[1] and guess[2] == answer[2] and guess[3] == answer[3] :
+        time.sleep(.8)
+        sys.stdout.write("You won !" + colors.ENDC)
+        time.sleep(2)
+        exit()
+    else :
+        trials += 1
+        index = 0
+time.sleep(.5)
+sys.stdout.write("\n" + colors.FAIL + "GAME OVER" + colors.ENDC)
