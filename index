@@ -1,5 +1,7 @@
 #!/bin/python3
 
+import src.funcs
+
 import random
 import time
 import sys
@@ -63,21 +65,7 @@ while trials <= 15 :
             continue
     sys.stdout.write("")
     ans = []
-    while index < len(answer) :
-        time.sleep(.7)
-        if guess[index] == answer[index] :
-            ans += [colors.OKGREEN, str(guess[index])]
-        elif guess[index] == answer[0] :
-            ans += [colors.WARNING, str(guess[index])]
-        elif guess[index] == answer[1] :
-            ans += [colors.WARNING, str(guess[index])]
-        elif guess[index] == answer[2] :
-            ans += [colors.WARNING, str(guess[index])]
-        elif guess[index] == answer[3] :
-            ans += [colors.WARNING, str(guess[index])]
-        else :
-            ans += [colors.FAIL, str(guess[index])]
-        index += 1
+    src.funcs.check_guess(guess, answer)
     for letter in ans :      
         sys.stdout.write(letter)
         sys.stdout.flush()
