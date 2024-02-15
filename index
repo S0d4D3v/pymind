@@ -5,6 +5,7 @@ import src.funcs
 import random
 import time
 import sys
+import webbrowser
 
 class colors:
     HEADER = '\033[95m'
@@ -23,38 +24,33 @@ class colors:
 
 sys.stdout.write(colors.HEADER + "   ___________________________________\n   | Welcome to the" + colors.BOLD + " Mastermind game" + colors.ENDC + colors.HEADER + "  |\n   |_________________________________|" + colors.ENDC)
 time.sleep(.8)
-sys.stdout.write(colors.BLUE + "→ Time to break the " + colors.BOLD + "code " + colors.ENDC + colors.BLUE + "!\n")
+sys.stdout.write(colors.BLUE + "\n→ Time to break the " + colors.BOLD + "code " + colors.ENDC + colors.BLUE + "!\n")
 time.sleep(.8)
 check_man_page = str(input(colors.YELLOW + "Do you want to check the game's rules ? (y-N) : " + colors.ENDC))
 if check_man_page == "yes" or check_man_page == "y" or check_man_page == "Y" :
-    sys.stdout.write(colors.BOLD + "\nGame rules :\n" + colors.ENDC + "You will have to guess a suite of 4 colors,\nwith as the options R-r for Red, G-g for green, B-b for blue, P-p for pink and Y-y for yellow.\n")
-    time.sleep(2) 
-    sys.stdout.write("When you click enter with your 4 colors, you will either have " + colors.FAIL + "\nthe worng color at the wrong place"  + colors.ENDC + ", " + colors.WARNING + "\nthe correct color at the wrong place" + colors.ENDC + ", or " + colors.OKGREEN + "\nthe correct color at the correct place" + colors.ENDC + ".")
-    time.sleep(5)
-    sys.stdout.write(colors.UNDERLINE + "\nYou have 15 trials" + colors.ENDC)
-    time.sleep(2)
+    webbrowser.open('https://github.com/S0d4D3v/mastermind')
+    time.sleep(.2)
+    sys.stdout.write("Check your browser, a tab has opened")
 elif check_man_page == "sus" :
     sys.stdout.write("AMOGUS !")
     time.sleep(1.2)
 else : 
     sys.stdout.write("\n")
 
-trials = 0
-answer = [ str(random.randint(1, 5)),  str(random.randint(1, 5)), str(random.randint(1, 5)), str(random.randint(1, 5))]
-index = 0
-while index < len(answer) :
-    if answer[index] == "1" :
-        answer[index] = 'R'
-    elif answer[index] == "2" :
-        answer[index] = "G" 
-    elif answer[index] == "3" :
-        answer[index] = "B"
-    elif answer[index] == "4" :
-        answer[index] = "P"
-    elif answer[index] == "5" :
-        answer[index] = "Y"
-    index += 1
+while True :
+    level = int(input("Choose your level between 1 and 5 :"))
+    if type(level) == int :
+        if level == 1 or level == 2 or level == 3 :
+            trials = 15
+        elif level == 4 :
+            trials = 12
+        elif level == 5 :
+            trials = 10
+        break
+    else : 
+        continue
 
+ans = src.funcs.randomize_answer(level)
 index = 0
 while trials <= 15 :     
     while True :
