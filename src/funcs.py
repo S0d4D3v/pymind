@@ -24,7 +24,7 @@ def randomize_answer(level) :
     elif level == 3 or level == 4 :
         answer = [ str(random.randint(1, 6)),  str(random.randint(1, 6)), str(random.randint(1, 6)), str(random.randint(1, 6)), str(random.randint(1, 6))]
     elif level == 5 :
-        answer = [ str(random.randint(1, 8)),  str(random.randint(1, 8)), str(random.randint(1, 8)), str(random.randint(1, 8)), str(random.randint(1, 8)), str(random.randint(1, 8))]
+        answer = [ str(random.randint(1, 10)),  str(random.randint(1, 10)), str(random.randint(1, 10)), str(random.randint(1, 10)), str(random.randint(1, 10)), str(random.randint(1, 10))]
     index = 0
     while index < len(answer) :
         if answer[index] == '1' :
@@ -36,13 +36,13 @@ def randomize_answer(level) :
         elif answer[index] == '4' :
             answer[index] = 'P'
         elif answer[index] == '5' :
-            answer[index] = 'Y'
+            answer[index] = 'O'
         elif answer[index] == '6' :
-            answer[index] == 'W'
+            answer[index] = 'Y'
         elif answer[index] == '7' :
-            answer[index] == 'C'
+            answer[index] = 'C'
         elif answer[index] == '8' :
-            answer[index] == 'S'
+            answer[index] = 'S'
         index += 1
     return answer
 
@@ -50,7 +50,6 @@ def check_guess(guess, answer) :
     index = 0
     ans = []
     while index < len(answer) :
-        time.sleep(.7)
         if guess[index] == answer[index] :
             ans += [colors.OKGREEN, str(guess[index])]
         elif guess[index] == answer[0] :

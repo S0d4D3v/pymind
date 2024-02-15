@@ -22,56 +22,63 @@ class colors:
     BLUE = '\033[34m'
     PINK = '\033[35m'
 
-sys.stdout.write(colors.HEADER + "   ___________________________________\n   | Welcome to the" + colors.BOLD + " Mastermind game" + colors.ENDC + colors.HEADER + "  |\n   |_________________________________|" + colors.ENDC)
-time.sleep(.8)
-sys.stdout.write(colors.BLUE + "\n→ Time to break the " + colors.BOLD + "code " + colors.ENDC + colors.BLUE + "!\n")
-time.sleep(.8)
-check_man_page = str(input(colors.YELLOW + "Do you want to check the game's rules ? (y-N) : " + colors.ENDC))
+sys.stdout.write("\033[95m ___________________________________\n | Welcome to the \033[1m Mastermind game\033[0m\033[95m |\n |_________________________________|\033[0m")
+time.sleep(.1)
+sys.stdout.write("\033[34m\n |Time to break the\033[1m code\033[0m\033[34m !\n")
+time.sleep(.1)
+check_man_page = str(input("\033[33m |\n |Do you want to check the game's rules ? (y-N) : \033[0m"))
 if check_man_page == "yes" or check_man_page == "y" or check_man_page == "Y" :
     webbrowser.open('https://github.com/S0d4D3v/mastermind')
     time.sleep(.2)
-    sys.stdout.write("Check your browser, a tab has opened")
-elif check_man_page == "sus" :
-    sys.stdout.write("AMOGUS !")
-    time.sleep(1.2)
-else : 
-    sys.stdout.write("\n")
+    sys.stdout.write("\033[93m[!] Check your browser, a tab has opened\033[0m\n")
+time.sleep(.5)
 
 while True :
-    level = int(input("Choose your level between 1 and 5 :"))
-    if type(level) == int :
-        if level == 1 or level == 2 or level == 3 :
-            trials = 15
-        elif level == 4 :
-            trials = 12
-        elif level == 5 :
-            trials = 10
+    level = int(input("\033[35m |\n[→] Choose your level between 1 and 5 : \033[0m\033[0m"))
+    sys.stdout.write("\033[35m |")
+    time.sleep(.6)
+    sys.stdout.write(" .")
+    time.sleep(.6)
+    sys.stdout.write(".")
+    time.sleep(.6)
+    sys.stdout.write(". \033[0m")
+    if level == 1 or level == 2 or level == 3 :
+        trials = 15
         break
-    else : 
+    elif level == 4 :
+        trials = 12
+        break
+    elif level == 5 :
+        trials = 10
+        break
+    else :
+        sys.stdout.write("\n\033[91m[X] This is not a level.")
         continue
 
-ans = src.funcs.randomize_answer(level)
-index = 0
-while trials <= 15 :     
+answer = src.funcs.randomize_answer(level)
+current_trial = 0
+
+while current_trial <= trials :     
     while True :
-        guess = str(input(colors.BLUE + "Take a guess :\n    "))
+        guess = str(input("Take a guess :\n    "))
         if len(guess) == 4 :
             break
         else :
             continue
-    sys.stdout.write("")
+    sys.stdout.write("\n")
     ans = src.funcs.check_guess(guess, answer)
     for letter in ans :      
         sys.stdout.write(letter)
         sys.stdout.flush()
         time.sleep(0.2)
+    sys.stdout.write("\n")
     if guess[0] == answer[0] and guess[1] == answer[1] and guess[2] == answer[2] and guess[3] == answer[3] :
         time.sleep(.8)
         sys.stdout.write("You won !" + colors.ENDC)
         time.sleep(2)
         exit()
     else :
-        trials += 1
+        current_trial += 1
         index = 0
 time.sleep(.5)
 sys.stdout.write("\n" + colors.FAIL + "GAME OVER" + colors.ENDC)
