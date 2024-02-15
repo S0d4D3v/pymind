@@ -64,8 +64,7 @@ while trials <= 15 :
         else :
             continue
     sys.stdout.write("")
-    ans = []
-    src.funcs.check_guess(guess, answer)
+    ans = src.funcs.check_guess(guess, answer)
     for letter in ans :      
         sys.stdout.write(letter)
         sys.stdout.flush()
