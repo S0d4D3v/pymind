@@ -1,66 +1,97 @@
 #!/bin/python3
 
 import src.funcs
+import src.messages
 
-import random
 import time
 import sys
 import webbrowser
 
-sys.stdout.write("\033[95m ___________________________________\n | Welcome to the \033[1m Mastermind game\033[0m\033[95m |\n |_________________________________|\033[0m")
-time.sleep(.1)
-sys.stdout.write("\033[34m\n |Time to break the\033[1m code\033[0m\033[34m !\n")
-time.sleep(.1)
-check_man_page = str(input("\033[33m |\n[?] Do you want to check the game's rules ? (y-N) : \033[0m"))
+for letter in src.messages.welcome_message :
+    sys.stdout.write(letter)
+    sys.stdout.flush()
+    time.sleep(.02)
+time.sleep(.8)
+for letter in src.messages.welcome_message_2 :
+    sys.stdout.write(letter)
+    sys.stdout.flush()
+    time.sleep(.03)
+for letter in src.messages.check_man_message :
+    sys.stdout.write(letter)
+    sys.stdout.flush()
+    time.sleep(.03)
+check_man_page = str(input())
 if check_man_page == "yes" or check_man_page == "YES" or check_man_page == "Yes" or check_man_page == "y" or check_man_page == "Y" :
     webbrowser.open('https://github.com/S0d4D3v/mastermind')
     time.sleep(.2)
-    sys.stdout.write("\033[93m |\n !- Check your browser, a tab has opened\033[0m\n")
+    for letter in src.messages.check_browser_message :
+        sys.stdout.write(letter)
+        sys.stdout.flush()
+        time.sleep(.02)
 time.sleep(.5)
 
 while True :
     while True :
         try :
-            level = int(input("\033[35m |\n[→] Choose your level between 1 and 5 : \033[0m\033[0m"))
+            for letter in src.messages.choose_level_message :
+                sys.stdout.write(letter)
+                sys.stdout.flush()
+                time.sleep(.03)
+            level = int(input())
         except :
             continue
         else :
             break
-    sys.stdout.write("\033[35m |")
-    time.sleep(.6)
-    sys.stdout.write("     .")
-    time.sleep(.6)
-    sys.stdout.write(".")
-    time.sleep(.6)
-    sys.stdout.write(". \033[0m")
-    time.sleep(.6)
+    sys.stdout.write("\n ")
+    for letter in src.messages.waiting_prompt :
+        sys.stdout.write(letter)
+        sys.stdout.flush()
+        time.sleep(.2)
     if level == 1 :
         trials = 15
-        sys.stdout.write("\n O- \033[32mEasy \033[0mlevel selected\033[0m\n")
+        for letter in src.messages.easy_level_selected :
+            sys.stdout.write(letter)
+            sys.stdout.flush()
+            time.sleep(.03)
         time.sleep(.8)
         break
     elif level == 2 :
         trials = 15
-        sys.stdout.write("\n O- \033[34mNormal \033[0mlevel selected\033[0m\n")
+        for letter in src.messages.normal_level_selected :
+            sys.stdout.write(letter)
+            sys.stdout.flush()
+            time.sleep(.03)
         time.sleep(.8)
         break
     elif level == 3 :
         trials = 15
-        sys.stdout.write("\n O- \033[33m\033[1mHard \033[0mlevel selected\033[0m\n")
+        for letter in src.messages.hard_level_selected :
+            sys.stdout.write(letter)
+            sys.stdout.flush()
+            time.sleep(.03)        
         time.sleep(.8)
         break
     elif level == 4 :
         trials = 12
-        sys.stdout.write("\n 0- \033[31mExtreme \033[0mlevel selected\033[0m\n")
+        for letter in src.messages.extreme_level_selected :
+            sys.stdout.write(letter)
+            sys.stdout.flush()
+            time.sleep(.03)
         time.sleep(.8)
         break
     elif level == 5 :
         trials = 10
-        sys.stdout.write("\n O- \033[31m\033[1mUltimate \033[0mlevel selected\033[0m\n")
+        for letter in src.messages.ultimate_level_selected :
+            sys.stdout.write(letter)
+            sys.stdout.flush()
+            time.sleep(.03)
         time.sleep(.8)
         break
     else :
-        sys.stdout.write("\n\033[91m(X) This is not a level.\n")
+        for letter in src.messages.not_a_level :
+            sys.stdout.write(letter)
+            sys.stdout.flush()
+            time.sleep(.03)
         continue
 
 answer = src.funcs.randomize_answer(level)
@@ -68,12 +99,16 @@ current_trial = 0
 
 while current_trial <= trials :     
     while True :
-        guess = str(input("\033[34m[→] Take a guess :"))
-        if len(guess) == 4 :
+        for letter in src.messages.take_guess :
+            sys.stdout.write(letter)
+            sys.stdout.flush()
+            time.sleep(.03)
+        guess = str(input())
+        if len(guess) == len(answer) :
             break
         else :
             continue
-    sys.stdout.write("\n | → \033[0m")
+    sys.stdout.write(" |\n 0-  \033[0m")
     ans = src.funcs.check_guess(level, guess, answer)
     for letter in ans :      
         sys.stdout.write(letter)
@@ -82,11 +117,17 @@ while current_trial <= trials :
     sys.stdout.write("\n")
     if guess[0] == answer[0] and guess[1] == answer[1] and guess[2] == answer[2] and guess[3] == answer[3] :
         time.sleep(.8)
-        sys.stdout.write("\n\033[34m\033[95m | You won !\033[0m")
+        for letter in src.messages.win_message :
+            sys.stdout.write(letter)
+            sys.stdout.flush()
+            time.sleep(.03)
         time.sleep(2)
         exit()
     else :
         current_trial += 1
         index = 0
 time.sleep(.5)
-sys.stdout.write("\n\033[91mGAME OVER\033[0m")
+for letter in src.messages.loose_message :
+    sys.stdout.write(letter)
+    sys.stdout.flush()
+    time.sleep(.03)

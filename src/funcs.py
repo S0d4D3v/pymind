@@ -1,4 +1,3 @@
-import time
 import random
 
 def randomize_answer(level) :
@@ -25,9 +24,13 @@ def randomize_answer(level) :
         elif answer[index] == '6' :
             answer[index] = 'Y'
         elif answer[index] == '7' :
-            answer[index] = 'C'
+            answer[index] = 'L'
         elif answer[index] == '8' :
+            answer[index] = 'C'
+        elif answer[index] == '9' :
             answer[index] = 'S'
+        elif answer[index] == '10' :
+            answer[index] = 'M'
         index += 1
     return answer
 
