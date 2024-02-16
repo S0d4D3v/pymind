@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/bin/python3.12
 
 import src.funcs
 import src.messages
@@ -10,8 +10,8 @@ import webbrowser
 for letter in src.messages.welcome_message :
     sys.stdout.write(letter)
     sys.stdout.flush()
-    time.sleep(.02)
-time.sleep(.8)
+    time.sleep(.01)
+time.sleep(.6)
 for letter in src.messages.welcome_message_2 :
     sys.stdout.write(letter)
     sys.stdout.flush()
@@ -28,7 +28,8 @@ if check_man_page == "yes" or check_man_page == "YES" or check_man_page == "Yes"
         sys.stdout.write(letter)
         sys.stdout.flush()
         time.sleep(.02)
-time.sleep(.5)
+    time.sleep(1.2)
+time.sleep(.2)
 
 while True :
     while True :
@@ -42,7 +43,6 @@ while True :
             continue
         else :
             break
-    sys.stdout.write("\n ")
     for letter in src.messages.waiting_prompt :
         sys.stdout.write(letter)
         sys.stdout.flush()
@@ -113,7 +113,22 @@ while current_trial <= trials :
     for letter in ans :      
         sys.stdout.write(letter)
         sys.stdout.flush()
-        time.sleep(0.2)
+        time.sleep(.2)
+    if level == 1 :
+        for letter in src.messages.possible_colors_easy :      
+            sys.stdout.write(letter)
+            sys.stdout.flush()
+            time.sleep(.01)
+    elif level == 2 or level == 3 or level == 4 :
+        for letter in src.messages.possible_colors_normal_hard_extreme :      
+            sys.stdout.write(letter)
+            sys.stdout.flush()
+            time.sleep(.01)
+    elif level == 5 :
+        for letter in src.messages.possible_colors_ultimate :      
+            sys.stdout.write(letter)
+            sys.stdout.flush()
+            time.sleep(.01)
     sys.stdout.write("\n")
     if guess[0] == answer[0] and guess[1] == answer[1] and guess[2] == answer[2] and guess[3] == answer[3] :
         time.sleep(.8)

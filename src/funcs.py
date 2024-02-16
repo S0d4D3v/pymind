@@ -1,3 +1,5 @@
+#!/bin/python3.12
+
 import random
 
 def randomize_answer(level) :
