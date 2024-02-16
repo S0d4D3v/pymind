@@ -26,33 +26,50 @@ sys.stdout.write("\033[95m ___________________________________\n | Welcome to th
 time.sleep(.1)
 sys.stdout.write("\033[34m\n |Time to break the\033[1m code\033[0m\033[34m !\n")
 time.sleep(.1)
-check_man_page = str(input("\033[33m |\n |Do you want to check the game's rules ? (y-N) : \033[0m"))
+check_man_page = str(input("\033[33m |\n ? Do you want to check the game's rules ? (y-N) : \033[0m"))
 if check_man_page == "yes" or check_man_page == "y" or check_man_page == "Y" :
     webbrowser.open('https://github.com/S0d4D3v/mastermind')
     time.sleep(.2)
-    sys.stdout.write("\033[93m[!] Check your browser, a tab has opened\033[0m\n")
+    sys.stdout.write("\033[93m |\n[!] Check your browser, a tab has opened\033[0m\n")
 time.sleep(.5)
 
 while True :
     level = int(input("\033[35m |\n[→] Choose your level between 1 and 5 : \033[0m\033[0m"))
     sys.stdout.write("\033[35m |")
     time.sleep(.6)
-    sys.stdout.write(" .")
+    sys.stdout.write("     .")
     time.sleep(.6)
     sys.stdout.write(".")
     time.sleep(.6)
     sys.stdout.write(". \033[0m")
-    if level == 1 or level == 2 or level == 3 :
+    time.sleep(.6)
+    if level == 1 :
         trials = 15
+        sys.stdout.write("\n O- \033[32mEasy \033[0mlevel selected\033[0m\n")
+        time.sleep(.8)
+        break
+    elif level == 2 :
+        trials = 15
+        sys.stdout.write("\n O- \033[34mNormal \033[0mlevel selected\033[0m\n")
+        time.sleep(.8)
+        break
+    elif level == 3 :
+        trials = 15
+        sys.stdout.write("\n O- \033[33m\033[1mHard \033[0mlevel selected\033[0m\n")
+        time.sleep(.8)
         break
     elif level == 4 :
         trials = 12
+        sys.stdout.write("\n O- \033[31mExtreme \033[0mlevel selected\033[0m\n")
+        time.sleep(.8)
         break
     elif level == 5 :
         trials = 10
+        sys.stdout.write("\n O- \033[31m\033[1mUltimate \033[0mlevel selected\033[0m\n")
+        time.sleep(.8)
         break
     else :
-        sys.stdout.write("\n\033[91m[X] This is not a level.")
+        sys.stdout.write("\n\033[91m[X] This is not a level.\n")
         continue
 
 answer = src.funcs.randomize_answer(level)
@@ -60,12 +77,12 @@ current_trial = 0
 
 while current_trial <= trials :     
     while True :
-        guess = str(input("Take a guess :\n    "))
+        guess = str(input("\033[34m[→] Take a guess :"))
         if len(guess) == 4 :
             break
         else :
             continue
-    sys.stdout.write("\n")
+    sys.stdout.write("\n\033[0m")
     ans = src.funcs.check_guess(guess, answer)
     for letter in ans :      
         sys.stdout.write(letter)
@@ -74,11 +91,11 @@ while current_trial <= trials :
     sys.stdout.write("\n")
     if guess[0] == answer[0] and guess[1] == answer[1] and guess[2] == answer[2] and guess[3] == answer[3] :
         time.sleep(.8)
-        sys.stdout.write("You won !" + colors.ENDC)
+        sys.stdout.write("\n\033[34m\033[95m | You won !\033[0m")
         time.sleep(2)
         exit()
     else :
         current_trial += 1
         index = 0
 time.sleep(.5)
-sys.stdout.write("\n" + colors.FAIL + "GAME OVER" + colors.ENDC)
+sys.stdout.write("\n\033[91mGAME OVER\033[0m")
