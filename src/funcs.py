@@ -1,6 +1,25 @@
 #!/bin/python3.12
 
+import messages
+
 import random
+import sys
+import time
+import webbrowser
+
+
+def message(message, delay) :
+    for letter in message :
+        sys.stdout.write(letter)
+        sys.stdout.flush()
+        time.sleep(delay)
+
+def man_page(input) :
+    if input == "yes" or input == "YES" or input == "Yes" or input == "y" or input == "Y" :
+        webbrowser.open('https://github.com/S0d4D3v/mastermind')
+        time.sleep(.2)
+        message(messages.check_browser_message, .02)
+        time.sleep(1.2)
 
 def randomize_answer(level) :
     if level == 1 :
