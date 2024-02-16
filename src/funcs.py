@@ -34,8 +34,8 @@ def randomize_answer(level) :
 def check_guess(level, guess, answer) :
     index = 0
     ans = []
-    while index < len(answer) :
-        if level <= 1 :
+    if level == 1 or level == 2 :
+        while index < len(answer) :
             if guess[index] == answer[index] :
                 ans += ["\033[92m", str(guess[index])]
             elif guess[index] == answer[0] :
@@ -48,7 +48,9 @@ def check_guess(level, guess, answer) :
                 ans += ["\033[93m", str(guess[index])]
             else :
                 ans += ["\033[91m", str(guess[index])]
-        elif level <= 3 :
+            index += 1
+    elif level == 3 or level == 4 :
+        while index < len(answer) :
             if guess[index] == answer[index] :
                 ans += ["\033[92m", str(guess[index])]
             elif guess[index] == answer[0] :
@@ -63,7 +65,9 @@ def check_guess(level, guess, answer) :
                 ans += ["\033[93m", str(guess[index])]
             else :
                 ans += ["\033[91m", str(guess[index])]
-        elif level <= 5 :
+            index += 1
+    elif level == 5 :
+        while index < len(answer) :
             if guess[index] == answer[index] :
                 ans += ["\033[92m", str(guess[index])]
             elif guess[index] == answer[0] :
@@ -80,5 +84,5 @@ def check_guess(level, guess, answer) :
                 ans += ["\033[93m", str(guess[index])]
             else :
                 ans += ["\033[91m", str(guess[index])] 
-        index += 1
+            index += 1
     return ans
