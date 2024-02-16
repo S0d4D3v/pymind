@@ -7,34 +7,25 @@ import time
 import sys
 import webbrowser
 
-class colors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-    RED = '\033[31m'
-    GREEN = '\033[32m'
-    YELLOW = '\033[33m'
-    BLUE = '\033[34m'
-    PINK = '\033[35m'
-
 sys.stdout.write("\033[95m ___________________________________\n | Welcome to the \033[1m Mastermind game\033[0m\033[95m |\n |_________________________________|\033[0m")
 time.sleep(.1)
 sys.stdout.write("\033[34m\n |Time to break the\033[1m code\033[0m\033[34m !\n")
 time.sleep(.1)
-check_man_page = str(input("\033[33m |\n ? Do you want to check the game's rules ? (y-N) : \033[0m"))
-if check_man_page == "yes" or check_man_page == "y" or check_man_page == "Y" :
+check_man_page = str(input("\033[33m |\n[?] Do you want to check the game's rules ? (y-N) : \033[0m"))
+if check_man_page == "yes" or check_man_page == "YES" or check_man_page == "Yes" or check_man_page == "y" or check_man_page == "Y" :
     webbrowser.open('https://github.com/S0d4D3v/mastermind')
     time.sleep(.2)
-    sys.stdout.write("\033[93m |\n[!] Check your browser, a tab has opened\033[0m\n")
+    sys.stdout.write("\033[93m |\n !- Check your browser, a tab has opened\033[0m\n")
 time.sleep(.5)
 
 while True :
-    level = int(input("\033[35m |\n[→] Choose your level between 1 and 5 : \033[0m\033[0m"))
+    while True :
+        try :
+            level = int(input("\033[35m |\n[→] Choose your level between 1 and 5 : \033[0m\033[0m"))
+        except :
+            continue
+        else :
+            break
     sys.stdout.write("\033[35m |")
     time.sleep(.6)
     sys.stdout.write("     .")
@@ -60,7 +51,7 @@ while True :
         break
     elif level == 4 :
         trials = 12
-        sys.stdout.write("\n O- \033[31mExtreme \033[0mlevel selected\033[0m\n")
+        sys.stdout.write("\n 0- \033[31mExtreme \033[0mlevel selected\033[0m\n")
         time.sleep(.8)
         break
     elif level == 5 :
@@ -69,7 +60,7 @@ while True :
         time.sleep(.8)
         break
     else :
-        sys.stdout.write("\n\033[91m[X] This is not a level.\n")
+        sys.stdout.write("\n\033[91m(X) This is not a level.\n")
         continue
 
 answer = src.funcs.randomize_answer(level)
@@ -82,8 +73,8 @@ while current_trial <= trials :
             break
         else :
             continue
-    sys.stdout.write("\n\033[0m")
-    ans = src.funcs.check_guess(guess, answer)
+    sys.stdout.write("\n | → \033[0m")
+    ans = src.funcs.check_guess(level, guess, answer)
     for letter in ans :      
         sys.stdout.write(letter)
         sys.stdout.flush()
