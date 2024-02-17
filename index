@@ -1,19 +1,16 @@
 #!/bin/python3.12
 
-import src.game
-import src.funcs
-import src.messages
+from src import *
 
 import time
-import sys
 
 src.funcs.message(src.messages.welcome_message, .01)
 time.sleep(.6)
-src.funcs.message(src.messages.welcome_message_2, .02)
+funcs.message(messages.welcome_message_2, .02)
 time.sleep(.4)
-src.funcs.message(src.messages.check_man_message, .02)
+funcs.message(messages.check_man_message, .02)
 check_man_page = str(input())
-src.funcs.man_page(check_man_page)
+funcs.man_page(check_man_page)
 time.sleep(.2)
 
-src.play()
+game.play()

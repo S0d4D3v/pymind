@@ -1,4 +1,3 @@
-# Mastermind
 ## This is a simple mastermind game in python to run in the CLI
 
 # How to install
