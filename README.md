@@ -28,6 +28,6 @@ and **P** for *pink*
 The list below shows the difficulties you will have to chose before starting the game :
 | Level : | *Easy* | *Normal* | *Hard* | *Extreme* | *Ultimate* |
 |-|-|-|-|-|-|
-| Trials : | 15 | 15 | 15 | 12 | 10
+| Trials : | 15 | 15 | 12 | 10 | 5
 | Colors to find : | 4 | 4 | 5 | 5 | 6
 | Possible colors : | *R G B P* | *R O Y G B P* | *R O Y G B P* | *R O Y G B P* | *R O Y G L C S B M P* 
