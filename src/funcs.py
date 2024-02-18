@@ -1,6 +1,14 @@
 #!/bin/python3.12
 
 import random
+import sys
+import time
+
+def message(message, delay) :
+    for letter in message :
+        sys.stdout.write(letter)
+        sys.stdout.flush()
+        time.sleep(delay)
 
 def randomize_answer(level) :
     if level == 1 :
