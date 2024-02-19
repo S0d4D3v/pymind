@@ -7,7 +7,7 @@ First, download this repository as a zip file or clone it by using the following
 git clone https://github.com/S0d4D3v/mastermind.git
 ```
 If you chose to download it as a zip file, extract it.
-Execute **index** by opening it or by running the following command :
+Execute **index** by opening it or by running the following command in linux (ensure you have python installed) :
 ```sh
 python3.12 ./index
 ```
@@ -29,5 +29,5 @@ The list below shows the difficulties you will have to chose before starting the
 | Level : | *Easy* | *Normal* | *Hard* | *Extreme* | *Ultimate* |
 |-|-|-|-|-|-|
 | Trials : | 15 | 15 | 12 | 10 | 5
-| Colors to find : | 4 | 4 | 5 | 5 | 6
+| Colors to find : | 4 | 5 | 5 | 5 | 6
 | Possible colors : | *R G B P* | *R O Y G B P* | *R O Y G B P* | *R O Y G B P* | *R O Y G L C S B M P* 
