@@ -9,7 +9,7 @@ git clone https://github.com/S0d4D3v/mastermind.git
 If you chose to download it as a zip file, extract it.
 Execute **index** by opening it or by running the following command in linux (ensure you have python installed) :
 ```sh
-python3.12 ./index
+python3.12 ./index # This sould work with other versions of python from the 3.x version
 ```
 
 # Game rules

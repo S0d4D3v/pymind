@@ -41,16 +41,16 @@ while True :
         time.sleep(.8)
         break
     elif level == 3 :
-        trials = 15
+        trials = 12
         src.funcs.message(src.messages.hard_level_selected, 0.02)
         break
     elif level == 4 :
-        trials = 12
+        trials = 10
         src.funcs.message(src.messages.extreme_level_selected, 0.02)
         time.sleep(.8)
         break
     elif level == 5 :
-        trials = 10
+        trials = 5
         src.funcs.message(src.messages.ultimate_level_selected, 0.02)
         time.sleep(.8)
         break
@@ -63,7 +63,12 @@ current_trial = 0
 
 while current_trial <= trials :     
     while True :
-        src.funcs.message(src.messages.take_guess, 0.02)
+        if trials - current_trial <= 1 :
+            src.funcs.message(src.messages.red_take_guess, 0.02)
+        elif trials - current_trial <= 3 :
+            src.funcs.message(src.messages.yellow_take_guess, 0.02)
+        else :
+            src.funcs.message(src.messages.take_guess, 0.02)
         guess = str(input())
         if len(guess) == len(answer) :
             break
@@ -75,7 +80,7 @@ while current_trial <= trials :
     if level == 1 :
         src.funcs.message(src.messages.possible_colors_easy, 0.01)
     elif level == 2 or level == 3 or level == 4 :
-        src.funcs.message(src.messages.possible_colors_normal_hard_extreme, 0.01)
+        src.funcs.message(src.messages.possible_colors_normal, 0.01)
     elif level == 5 :
         src.funcs.message(src.messages.possible_colors_ultimate, 0.01)
     sys.stdout.write("\n")
